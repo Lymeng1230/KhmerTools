@@ -261,5 +261,13 @@ app.use((error, req, res, next) => {
   res.status(status).json({ success: false, error: message || "Unexpected server error." });
 });
 
-if (require.main === module) app.listen(PORT, HOST, () => console.log(`KhmerTools running at http://localhost:${PORT}`));
+const PORT = process.env.PORT || 3000;
+const HOST = "0.0.0.0";
+
+if (require.main === module) {
+  app.listen(PORT, HOST, () => {
+    console.log(`KhmerTools running on port ${PORT}`);
+  });
+}
+
 module.exports = app;
